@@ -1,0 +1,14 @@
+[
+    {
+        "model": "s4sbackendapi.Samples",
+        "pk": 1,
+        "fields": {
+            "uploader": 1,
+            "rating": "5",
+            "color": "Red",
+            "loudness": "0",
+            "audio_url": "www.example.com",
+            "date_added": "01-01-2021"
+        }
+    }
+]

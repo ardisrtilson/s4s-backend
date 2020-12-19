@@ -1,0 +1,10 @@
+[
+    {
+        "model": "s4sbackendapi.UserFavorites",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "sample": 1
+        }
+    }
+]

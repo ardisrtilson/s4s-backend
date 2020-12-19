@@ -1,0 +1,16 @@
+[
+    {
+        "model": "s4sbackendapi.Sexes",
+        "pk": 1,
+        "fields": {
+            "sex": "Female"
+        }
+    },
+    {
+        "model": "s4sbackendapi.Sexes",
+        "pk": 2,
+        "fields": {
+            "sex": "Male"
+        }
+    }
+]

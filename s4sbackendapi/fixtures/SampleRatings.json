@@ -1,0 +1,11 @@
+[
+    {
+        "model": "s4sbackendapi.SampleRatings",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "sample": 1,
+            "rating": "5"
+        }
+    }
+]

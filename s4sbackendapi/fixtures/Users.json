@@ -1,0 +1,9 @@
+[
+    {
+        "model": "s4sbackendapi.Users",
+        "pk": 1,
+        "fields": {
+            "sex": 1
+        }
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "model": "s4sbackendapi.Comments",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "sample": 1,
+            "content": "Test",
+            "date_added": "01_01_2020"
+        }
+    }
+]
