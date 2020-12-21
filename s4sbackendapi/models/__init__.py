@@ -4,4 +4,4 @@ from .Samples import Samples
 from .Sexes import Sexes
 from .SpectralData import Spectra
 from .UserFavorites import UserFavorites
-from .Users import Users
+from .s4sUser import s4sUser

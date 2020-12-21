@@ -1,5 +1,5 @@
 import json
-from s4sbackendapi.models import Sexes, Users
+from s4sbackendapi.models import Sexes, s4sUser
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
@@ -58,15 +58,16 @@ def register_user(request):
     )
 
     # Now save the extra info in the levelupapi_gamer table
-    SexedUser = Users.objects.create(
-        sex = Sexes.objects.get(pk=sex_id)
+    SexedUser = s4sUser.objects.create(
+        sex = Sexes.objects.get(pk=sex_id),
+        user = new_user
     )
 
     # Commit the user to the database by saving it
     SexedUser.save()
 
     # Use the REST Framework's token generator on the new user account
-    token = Token.objects.create(User=new_user)
+    token = Token.objects.create(user=new_user)
 
     # Return the token to the client
     data = json.dumps({"token": token.key})

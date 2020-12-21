@@ -1,8 +1,9 @@
 [
     {
-        "model": "s4sbackendapi.Users",
+        "model": "s4sbackendapi.s4sUser",
         "pk": 1,
         "fields": {
+            "user_id": 1,
             "sex": 1
         }
     }
