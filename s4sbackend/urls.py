@@ -2,12 +2,14 @@ from django.conf.urls import include
 from django.urls import path
 from s4sbackendapi.views import register_user, login_user
 from rest_framework import routers
-from s4sbackendapi.views import Samples
+from s4sbackendapi.views import Samples, UserFavorites, Profiles
 from django.conf import settings
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'samples', Samples, 'samples')
+router.register(r'userFavorites', UserFavorites, 'userFavorites')
+router.register(r'users', Profiles, 'users')
 
 urlpatterns = [
     path('', include(router.urls)),
