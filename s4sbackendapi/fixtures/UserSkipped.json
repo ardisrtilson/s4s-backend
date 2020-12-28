@@ -1,0 +1,10 @@
+[
+    {
+        "model": "s4sbackendapi.UserSkipped",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "sample": 1
+        }
+    }
+]

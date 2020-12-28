@@ -18,16 +18,16 @@ class RandomSample(ViewSet):
         Returns:
             Response -- JSON serialized list of comments
         """
-        faves = FavoritesModel.objects.filter(user=request.auth.user.id)
+        # notUser = SamplesModel.objects.exclude(uploader=request.auth.user.id)
+        # pks = notUser.values_list('pk', flat=True)
+        # random_pk = choice(pks)
+        # random_obj = SamplesModel.objects.get(pk=random_pk)
+
         notUser = SamplesModel.objects.exclude(uploader=request.auth.user.id)
-        for fave in faves:
-            notUser.filter(uploader=fave.user_id).delete()
-        pks = notUser.values_list('pk', flat=True)
-        random_pk = choice(pks)
-        random_obj = SamplesModel.objects.get(pk=random_pk)
+        shuffledSamples = notUser.order_by('?')
 
         serializer = SampleListSerializer(
-            random_obj, many=False, context={'request': request})
+            shuffledSamples, many=True, context={'request': request})
         return Response(serializer.data)
 
 class UserSerializer(serializers.ModelSerializer):
