@@ -25,10 +25,9 @@ SECRET_KEY = 'xeg21)94fkv=bc_s(8d$(@bw!%b%v6v&e-oo1em0+_yc-ms5ho'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = None
+
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',

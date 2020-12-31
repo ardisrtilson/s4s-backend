@@ -5,6 +5,9 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
+import uuid
+import base64
+from django.core.files.base import ContentFile
 
 
 @csrf_exempt
@@ -36,7 +39,6 @@ def login_user(request):
             data = json.dumps({"valid": False})
             return HttpResponse(data, content_type='application/json')
 
-
 @csrf_exempt
 def register_user(request):
     '''Handles the creation of a new gamer for authentication
@@ -47,7 +49,13 @@ def register_user(request):
 
     # Load the JSON string of the request body into a dict
     req_body = json.loads(request.body.decode())
+    format, imgstr = req_body['profile_image'].split(';base64,')
+    ext = format.split('/')[-1]
+    data = ContentFile(base64.b64decode(imgstr), name=f'{req_body["first_name"]}-{uuid.uuid4()}.{ext}')
+
     sex_id = req_body['sex_id'] 
+    profile_image = data
+    
     # Create a new user by invoking the `create_user` helper method
     # on Django's built-in User model
     new_user = User.objects.create_user(
@@ -60,7 +68,8 @@ def register_user(request):
     # Now save the extra info in the levelupapi_gamer table
     SexedUser = s4sUser.objects.create(
         sex = Sexes.objects.get(pk=sex_id),
-        user = new_user
+        user = new_user,
+        profile_image = profile_image
     )
 
     # Commit the user to the database by saving it

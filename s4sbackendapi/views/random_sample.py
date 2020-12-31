@@ -41,9 +41,9 @@ class SampleSerializer(serializers.ModelSerializer):
     user=UserSerializer(many=False)
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'user')
+        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'user', 'sample_image')
 
 class SampleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'id')
+        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'id', 'sample_image')

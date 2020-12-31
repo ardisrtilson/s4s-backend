@@ -8,6 +8,9 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from s4sbackendapi.models import Samples as SamplesModel
 from django.contrib.auth.models import User
+import uuid
+import base64
+from django.core.files.base import ContentFile
 
 class Samples(ViewSet):
 
@@ -23,6 +26,10 @@ class Samples(ViewSet):
             sample.date_added = request.data["date_added"]
             sample.loudness = request.data["loudness"]
             sample.name = request.data["name"]
+            format, imgstr = request.data['sample_image'].split(';base64,')
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["name"]}-{uuid.uuid4()}.{ext}')
+            sample.sample_image = data
             sample.uploader = user
         except KeyError as ex:
             return Response({'Reason'}, status=status.HTTP_400_BAD_REQUEST)
@@ -107,9 +114,9 @@ class SampleSerializer(serializers.ModelSerializer):
     user=UserSerializer(many=False)
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'user')
+        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'user', 'sample_image')
 
 class SampleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'id')
+        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'id', 'sample_image')
