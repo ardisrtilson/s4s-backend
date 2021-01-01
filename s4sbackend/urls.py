@@ -2,7 +2,7 @@ from django.conf.urls import include
 from django.urls import path
 from s4sbackendapi.views import register_user, login_user
 from rest_framework import routers
-from s4sbackendapi.views import Samples, UserFavorites, Profiles, RandomSample, UserSkipped
+from s4sbackendapi.views import Samples, UserFavorites, Profiles, RandomSample, UserSkipped, Comments, SampleRatings
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,6 +12,8 @@ router.register(r'userFavorites', UserFavorites, 'userFavorites')
 router.register(r'userSkipped', UserSkipped, 'userSkipped')
 router.register(r'users', Profiles, 'users')
 router.register(r'randomSample', RandomSample, 'randomSample')
+router.register(r'comments', Comments, 'comments')
+router.register(r'sampleRatings', SampleRatings, 'sampleRatings')
 
 urlpatterns = [
     path('', include(router.urls)),

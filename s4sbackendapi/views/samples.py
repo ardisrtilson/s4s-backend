@@ -21,10 +21,7 @@ class Samples(ViewSet):
         sample.user = user
         try:
             sample.audio_url = request.data["audio_url"]
-            sample.color = request.data["color"]
-            sample.rating = request.data["rating"]
             sample.date_added = request.data["date_added"]
-            sample.loudness = request.data["loudness"]
             sample.name = request.data["name"]
             format, imgstr = request.data['sample_image'].split(';base64,')
             ext = format.split('/')[-1]
@@ -91,17 +88,14 @@ class Samples(ViewSet):
         sample = SamplesModel.objects.get(pk=pk)
 
         sample.audio_url = request.data["audio_url"]
-        sample.color = request.data["color"]
-        sample.rating = request.data["rating"]
         sample.date_added = request.data["date_added"]
-        sample.loudness = request.data["loudness"]
         sample.name = request.data["name"]
+        sample.sample_image = request.data["sample_image"]
         sample.uploader = user
 
         sample.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
-
 
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
@@ -114,9 +108,9 @@ class SampleSerializer(serializers.ModelSerializer):
     user=UserSerializer(many=False)
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'user', 'sample_image')
+        fields = ('audio_url', 'date_added', 'name', 'uploader', 'user', 'sample_image')
 
 class SampleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'color', 'date_added', 'loudness', 'name', 'uploader', 'id', 'sample_image')
+        fields = ('audio_url', 'date_added', 'name', 'uploader', 'id', 'sample_image')

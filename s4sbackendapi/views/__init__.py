@@ -5,3 +5,5 @@ from .random_sample import RandomSample
 from .user import Profiles
 from .user_favorites import UserFavorites
 from .user_skipped import UserSkipped
+from .comments import Comments
+from .ratings import SampleRatings

@@ -5,7 +5,9 @@
         "fields": {
             "user": 1,
             "sample": 1,
-            "rating": "5"
+            "rating": "5",
+            "color": "Red",
+            "loudness": "0"
         }
     }
 ]

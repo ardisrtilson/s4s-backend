@@ -8,6 +8,5 @@ python manage.py loaddata s4sUser
 python manage.py loaddata Samples
 python manage.py loaddata SampleRatings
 python manage.py loaddata Comments
-python manage.py loaddata SpectralData
 python manage.py loaddata UserFavorites
 python manage.py loaddata tokens
