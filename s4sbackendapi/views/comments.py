@@ -17,8 +17,8 @@ class Comments(ViewSet):
         comment = CommentsModel()
         comment.user = user
         try:
-            comment.user = request.data["user"]
-            comment.sample = request.data["sample"]
+            comment.user = user
+            comment.sample_id = request.data["sample"]
             comment.content = request.data["content"]
             comment.date_added = request.data["date_added"]
         except KeyError as ex:
@@ -80,7 +80,6 @@ class Comments(ViewSet):
 
         comment = CommentsModel.objects.get(pk=pk)
 
-        comment.user = request.data["user"]
         comment.sample = request.data["sample"]
         comment.content = request.data["content"]
         comment.date_added = request.data["date_added"]
