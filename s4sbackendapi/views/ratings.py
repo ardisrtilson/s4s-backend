@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from s4sbackendapi.models import SampleRatings as RatingsModel
 from django.contrib.auth.models import User
+from s4sbackendapi.models import Samples as SamplesModel
 
 class SampleRatings(ViewSet):
 
@@ -46,4 +47,5 @@ class RatingSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
     class Meta:
         model = RatingsModel
-        fields = ('rating', 'color', 'user')
+        fields = ('rating', 'color', 'user', 'sample')
+        depth = 1

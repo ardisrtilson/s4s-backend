@@ -1,4 +1,4 @@
-from s4sbackendapi.models.s4sUser import s4sUser
+from s4sbackendapi.models import s4sUser as s4sUserModel
 from django import utils
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
@@ -88,9 +88,25 @@ class Comments(ViewSet):
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
+class MainUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username',)
+
+class s4sUserSerializer(serializers.ModelSerializer):
+
+    user = MainUserSerializer(many=False)
+
+    class Meta:
+        model = s4sUserModel
+        fields = ('id', 'user', 'profile_image',)
+        depth = 1
 
 class CommentSerializer(serializers.ModelSerializer):
-    """JSON serializer for users"""
+
+    user = s4sUserSerializer(many=False)
+
     class Meta:
         model = CommentsModel
-        fields = ('user', 'sample', 'content', 'date_added')
+        fields = ('user', 'sample', 'content', 'date_added',)
