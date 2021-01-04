@@ -43,6 +43,18 @@ class SampleRatings(ViewSet):
             ratings, many=True, context={'request': request})
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for single comment
+        Returns:
+            Response -- JSON serialized game instance
+        """
+        try:
+            ratings = RatingsModel.objects.all()
+            serializer = RatingSerializer(ratings, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
 class RatingSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
     class Meta:

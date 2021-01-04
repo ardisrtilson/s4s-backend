@@ -97,7 +97,6 @@ class Samples(ViewSet):
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
-
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
     class Meta:
