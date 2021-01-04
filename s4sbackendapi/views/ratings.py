@@ -47,5 +47,5 @@ class RatingSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
     class Meta:
         model = RatingsModel
-        fields = ('rating', 'color', 'user', 'sample')
+        fields = ('rating', 'color', 'user', 'sample', 'loudness')
         depth = 1

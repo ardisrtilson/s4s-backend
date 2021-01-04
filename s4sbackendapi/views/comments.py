@@ -1,4 +1,4 @@
-from s4sbackendapi.models import s4sUser as s4sUserModel
+from s4sbackendapi.models.s4sUser import s4sUser
 from django import utils
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
@@ -99,7 +99,7 @@ class s4sUserSerializer(serializers.ModelSerializer):
     user = MainUserSerializer(many=False)
 
     class Meta:
-        model = s4sUserModel
+        model = s4sUser
         fields = ('id', 'user', 'profile_image',)
         depth = 1
 
@@ -109,4 +109,4 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CommentsModel
-        fields = ('user', 'sample', 'content', 'date_added',)
+        fields = ('id', 'user', 'sample', 'content', 'date_added',)
