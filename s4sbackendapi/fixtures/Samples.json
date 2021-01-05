@@ -6,7 +6,9 @@
             "uploader": 1,
             "audio_url": "",
             "date_added": "01-01-2021",
-            "sample_image": ""
+            "sample_image": "",
+            "times_played": "",
+            "times_downloaded": ""
         }
     }
 ]

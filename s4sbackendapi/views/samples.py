@@ -91,6 +91,8 @@ class Samples(ViewSet):
         sample.date_added = request.data["date_added"]
         sample.name = request.data["name"]
         sample.sample_image = request.data["sample_image"]
+        sample.times_played = request.data["times_played"]
+        sample.times_downloaded = request.data["times_downloaded"]
         sample.uploader = user
 
         sample.save()
@@ -113,4 +115,4 @@ class SampleSerializer(serializers.ModelSerializer):
 class SampleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SamplesModel
-        fields = ('audio_url', 'date_added', 'name', 'uploader', 'id', 'sample_image')
+        fields = ('audio_url', 'date_added', 'name', 'uploader', 'id', 'sample_image', 'times_played', 'times_downloaded')

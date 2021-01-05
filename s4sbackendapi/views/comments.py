@@ -83,7 +83,7 @@ class Comments(ViewSet):
         comment.sample = request.data["sample"]
         comment.content = request.data["content"]
         comment.date_added = request.data["date_added"]
-
+        comment.user_id = request.data["user"]
         comment.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
